@@ -31,7 +31,8 @@ class News extends Model
 
 	protected $casts = [
 		'category' => 'int',
-		'author' => 'int'
+		'author' => 'int',
+		'publishedAt' => 'datetime'
 	];
 
 	protected $dates = [

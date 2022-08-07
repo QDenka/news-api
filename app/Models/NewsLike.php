@@ -27,7 +27,8 @@ class NewsLike extends Model
 
 	protected $casts = [
 		'news' => 'int',
-		'user' => 'int'
+		'user' => 'int',
+		'likedAt' => 'datetime'
 	];
 
 	protected $dates = [

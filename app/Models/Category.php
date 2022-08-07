@@ -26,6 +26,10 @@ class Category extends Model
 	protected $table = 'categories';
 	public $timestamps = false;
 
+	protected $casts = [
+		'createdAt' => 'datetime'
+	];
+
 	protected $dates = [
 		'createdAt'
 	];
