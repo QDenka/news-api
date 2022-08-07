@@ -21,6 +21,12 @@ return new class extends Migration
             $table->unsignedBigInteger('news');
             $table->unsignedBigInteger('user');
             $table->timestamp('likedAt');
+
+            $table->foreign('news')->references('id')->on('news')
+                ->onDelete('cascade');
+
+            $table->foreign('user')->references('id')->on('users')
+                ->onDelete('cascade');
         });
     }
 
