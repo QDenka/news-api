@@ -23,11 +23,11 @@ class NewsController extends Controller
      */
     public function get(Request $request): Response
     {
-        $news = NewsRepository::getByRequest($request, 10);
+        $article = NewsRepository::getByRequest($request, 10);
 
         return $this->success(
             'Get news successful',
-            compact('news')
+            compact('article')
         );
     }
 
