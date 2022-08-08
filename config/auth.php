@@ -108,4 +108,5 @@ return [
 
     'password_timeout' => 10800,
 
+    'token_name' => 'news_token'
 ];
