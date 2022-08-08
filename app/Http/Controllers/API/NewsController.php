@@ -1,19 +1,27 @@
 <?php
 
-namespace App\Http\Controller\API;
+namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateNewsRequest;
 use App\Http\Traits\ApiResponser;
+use App\Models\Category;
+use App\Models\News;
 use App\Repositories\NewsRepository;
-use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class NewsController extends Controller
 {
     use ApiResponser;
 
-    public function get(Request $request): ResponseFactory
+    /**
+     * Получение списка новостей
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function get(Request $request): Response
     {
         $news = NewsRepository::getByRequest($request, 10);
 
@@ -23,13 +31,37 @@ class NewsController extends Controller
         );
     }
 
-    public function create(CreateNewsRequest $request)
+    /**
+     * Создание новости
+     *
+     * @param CreateNewsRequest $request
+     * @return Response
+     */
+    public function create(CreateNewsRequest $request): Response
     {
-        $news = NewsRepository::create($request->all());
+        $params = $request->all();
+        $params['category'] = Category::where('title', $params['category'])->first()->id;
+        $news = NewsRepository::create($params);
 
         return $this->success(
             'News successful created',
             compact('news')
+        );
+    }
+
+    /**
+     * Добавить / Убрать лайк
+     *
+     * @param News $news
+     * @return Response
+     */
+    public function toggleLike(News $news): Response
+    {
+        $state = NewsRepository::toggleLike($news);
+
+        return $this->success(
+            'Like toggle successful',
+            compact('state')
         );
     }
 }
