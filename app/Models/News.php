@@ -8,6 +8,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -26,6 +27,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class News extends Model
 {
+	use HasFactory;
+
 	protected $table = 'news';
 	public $timestamps = false;
 
@@ -56,8 +59,8 @@ class News extends Model
 		return $this->belongsTo(Category::class, 'category');
 	}
 
-	public function news_likes()
+	public function likes()
 	{
-		return $this->hasMany(NewsLike::class, 'news');
+		return $this->hasMany(NewsLike::class, 'news')->with('user');
 	}
 }
