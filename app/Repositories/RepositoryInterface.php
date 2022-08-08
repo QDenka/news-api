@@ -4,6 +4,9 @@ namespace App\Repositories;
 
 use Illuminate\Http\Request;
 
+/**
+ * Интерфейс репозитория
+ */
 interface RepositoryInterface
 {
     public static function getAll();
