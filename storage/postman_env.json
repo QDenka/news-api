@@ -1,0 +1,1 @@
+{"id":"d735f33c-f81f-4d0d-801b-2047d6af8017","name":"news-api","values":[{"key":"baseUrl","value":"http://localhost:8000/api","enabled":true},{"key":"version","value":"v1","enabled":true,"type":"default"}]}
