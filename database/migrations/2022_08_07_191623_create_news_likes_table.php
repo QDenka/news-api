@@ -20,7 +20,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('news');
             $table->unsignedBigInteger('user');
-            $table->timestamp('likedAt');
+            $table->timestamp('likedAt')->useCurrent();
 
             $table->foreign('news')->references('id')->on('news')
                 ->onDelete('cascade');

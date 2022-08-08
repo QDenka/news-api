@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('title');
             $table->unsignedBigInteger('category');
             $table->unsignedBigInteger('author');
-            $table->timestamp('publishedAt');
+            $table->timestamp('publishedAt')->useCurrent();
 
             $table->foreign('category')->references('id')->on('categories')
                 ->onDelete('cascade');

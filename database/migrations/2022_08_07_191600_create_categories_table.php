@@ -18,8 +18,8 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->timestamp('createdAt');
+            $table->string('title')->unqiue();
+            $table->timestamp('createdAt')->useCurrent();
         });
     }
 
